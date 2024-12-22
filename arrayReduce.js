@@ -26,3 +26,23 @@ const segregatedList = arr2.reduce((prev, current) => {
 }, {});
 
 console.log(segregatedList);
+
+function convertToUpperCase(str) {
+  return str.toUpperCase();
+}
+
+function reverse(str) {
+  return str.split("").reverse().join("");
+}
+
+function greet(str) {
+  return `Hello ${str}`;
+}
+
+const executeFuncList = [convertToUpperCase, reverse, greet];
+
+const result2 = executeFuncList.reduce((prev, next) => {
+  return next(prev);
+}, "Sashank");
+
+console.log(result2);
