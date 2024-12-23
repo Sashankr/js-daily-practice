@@ -46,3 +46,25 @@ const result2 = executeFuncList.reduce((prev, next) => {
 }, "Sashank");
 
 console.log(result2);
+
+function asyncTask(time) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(`Completing ${time}`);
+    }, 100 * time);
+  });
+}
+
+const promiseList = [asyncTask(3), asyncTask(5), asyncTask(2), asyncTask(7)];
+
+const promiseExecutor = async (promises) => {
+  promises.reduce((acc, current) => {
+    return acc.then(() => {
+      return current.then((data) => {
+        console.log(data);
+      });
+    });
+  }, Promise.resolve());
+};
+
+promiseExecutor(promiseList);
